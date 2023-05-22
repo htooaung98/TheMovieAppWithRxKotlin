@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/width_showcase"
+    android:layout_height="@dimen/height_showcase"
+    android:layout_marginStart="@dimen/margin_medium_2"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/placeholder_wolverrine_image"
+        android:scaleType="centerCrop"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPlay"
+        android:backgroundTint="@color/colorAccent"
+        app:cornerRadius="@dimen/margin_large"
+        android:layout_centerInParent="true"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        app:icon="@drawable/ic_baseline_play_arrow_24"
+        app:iconPadding="0dp"
+        android:insetRight="0dp"
+        android:insetLeft="0dp"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:elevation="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:layout_width="@dimen/margin_xxlarge"
+        android:layout_height="@dimen/margin_xxlarge"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShowCaseMovieDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="15 DECEMBER 2015"
+        android:elevation="@dimen/margin_medium"
+        android:textColor="@color/colorSecondaryText"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShowCaseMovieName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passengers"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:elevation="@dimen/margin_medium"
+        android:layout_above="@id/tvShowCaseMovieDate"
+        android:layout_alignStart="@id/tvShowCaseMovieDate"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:textSize="@dimen/text_regular_2x"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorTransparentOverLay"
+        android:elevation="@dimen/margin_small"/>
+</RelativeLayout>
