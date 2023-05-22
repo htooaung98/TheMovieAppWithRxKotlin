@@ -9,13 +9,11 @@ import com.example.themovieapp.viewPods.ActorListViewPod
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity : AppCompatActivity() {
-
     companion object{
         fun newIntent(context: Context): Intent{
             return Intent(context,MovieDetailActivity::class.java)
         }
     }
-
     lateinit var actorsViewPod: ActorListViewPod
     lateinit var creatorViewPod: ActorListViewPod
 
@@ -27,20 +25,18 @@ class MovieDetailActivity : AppCompatActivity() {
         setUpListeners()
     }
 
+
     private fun setUpListeners() {
         btnBack.setOnClickListener{
             super.onBackPressed()
         }
-
-
     }
 
     private fun setUpViewPods(){
         actorsViewPod = vpActor as ActorListViewPod
         actorsViewPod.setUpActorViewPod(
             R.color.colorPrimary,
-            getString(R.string.lbl_actor),
-            ""
+            getString(R.string.lbl_actor), ""
         )
         creatorViewPod = vpCreators as ActorListViewPod
         creatorViewPod.setUpActorViewPod(
