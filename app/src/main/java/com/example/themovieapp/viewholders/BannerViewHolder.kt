@@ -1,5 +1,6 @@
 package com.example.themovieapp.viewholders
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +17,8 @@ class BannerViewHolder(itemView: View , private val mDelegate: BannerViewHolderD
     }
 
     fun bindData(movie: MovieVO){
+
+        Log.i("KST","${IMAGE_BASE_URL}${movie.posterPath}")
         Glide.with(itemView.context)
             .load("${IMAGE_BASE_URL}${movie.posterPath}")
             .into(itemView.ivBannerImage)

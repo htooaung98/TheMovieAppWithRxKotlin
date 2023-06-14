@@ -44,14 +44,7 @@ class MainActivity : AppCompatActivity() , BannerViewHolderDelegate ,ShowCaseVie
 
         setUpListeners()
 
-        mMovieModel.getNowPlayingMovies(
-            onSuccess ={
-                mBannerAdapters.setNewData(it)
-            },
-            onFailure = {
-
-            }
-        )
+        requestData()
     }
 
     private fun setUpViewPods() {
@@ -109,6 +102,35 @@ class MainActivity : AppCompatActivity() , BannerViewHolderDelegate ,ShowCaseVie
         }
     }
 
+    private fun requestData(){
+        mMovieModel.getNowPlayingMovies(
+            onSuccess ={
+                mBannerAdapters.setNewData(it)
+            },
+            onFailure = {
+
+            }
+        )
+
+        mMovieModel.getPopularMovies(
+            onSuccess = {
+                mBestPopularMoiveListViewPod.setNewData(it)
+            },
+            onFailure = {
+
+            }
+        )
+
+        mMovieModel.getTopRatedMovies(
+            onSuccess = {
+                mShowcaseAdapter.setNewData(it)
+            },
+            onFailure = {
+
+            }
+        )
+    }
+
     private fun setUpShowCaseRecyclerView(){
         mShowcaseAdapter = ShowcaseAdapter(this)
         rvShowcase.adapter = mShowcaseAdapter
@@ -131,4 +153,6 @@ class MainActivity : AppCompatActivity() , BannerViewHolderDelegate ,ShowCaseVie
     override fun onTapMovie() {
         startActivity(MovieDetailActivity.newIntent(this))
     }
+
+
 }

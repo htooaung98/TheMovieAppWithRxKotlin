@@ -31,12 +31,56 @@ object RetrofitDataAgentImpl: MovieDataAgent{
 
         mTheMoviepi = retrofit.create(TheMovieApi::class.java)
     }
-    override fun getNowPlayingMovies(
+    override fun getNowPlayingMovies(onSuccess: (List<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
+
+        mTheMoviepi?.getNowPlayingMovies()?.enqueue(object :Callback<MovieListResponse>{
+            override fun onResponse(
+                call: Call<MovieListResponse>,
+                response: Response<MovieListResponse>
+            ) {
+                if(response.isSuccessful){
+                    val movieList = response.body()?.results?: listOf()
+                    onSuccess(movieList)
+                }
+                else{
+                    onFailure(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
+                onFailure(t.message?:"")
+            }
+
+        })
+    }
+
+    override fun getPopularMovies(onSuccess: (List<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
+        mTheMoviepi?.getPopularMovies()?.enqueue(object : Callback<MovieListResponse>{
+            override fun onResponse(
+                call: Call<MovieListResponse>,
+                response: Response<MovieListResponse>
+            ) {
+                if(response.isSuccessful){
+                    val movieList = response.body()?.results?: listOf()
+                    onSuccess(movieList)
+                }
+                else{
+                    onFailure(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
+                onFailure(t.message?:"")
+            }
+
+        })
+    }
+
+    override fun getTopRatedMovies(
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-
-        mTheMoviepi?.getNowPlayingMovies()?.enqueue(object :Callback<MovieListResponse>{
+        mTheMoviepi?.getTopRatedMovies()?.enqueue(object : Callback<MovieListResponse>{
             override fun onResponse(
                 call: Call<MovieListResponse>,
                 response: Response<MovieListResponse>

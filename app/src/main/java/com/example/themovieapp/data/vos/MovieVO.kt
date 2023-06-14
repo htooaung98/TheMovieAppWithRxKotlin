@@ -46,4 +46,9 @@ data class MovieVO (
 
     @SerializedName("vote_count")
     val voteCount:Int?
-        )
+        ){
+
+    fun getRatingBasedOnFiveStars():Float{
+        return voteAverage?.div(2)?.toFloat()?:0.0f
+    }
+}
