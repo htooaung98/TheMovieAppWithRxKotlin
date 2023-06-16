@@ -41,6 +41,4 @@
         android:rating="5"
         android:layout_centerVertical="true"/>
 
-
-
 </RelativeLayout>

@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.themovieapp.R
 import com.example.themovieapp.adapters.ActorAdapter
+import com.example.themovieapp.data.vos.ActorVO
 import kotlinx.android.synthetic.main.view_pod_actor_list.view.*
 
 class ActorListViewPod @JvmOverloads constructor(
@@ -19,6 +20,10 @@ class ActorListViewPod @JvmOverloads constructor(
         setUpActorRecyclerView()
 
         super.onFinishInflate()
+    }
+
+    fun setNewData(actorList:List<ActorVO>){
+        mActorAdapter.setNewData(actorList)
     }
 
     fun setUpActorViewPod(backgroundColor : Int , title: String , moreTitle :String){

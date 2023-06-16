@@ -1,5 +1,7 @@
 package com.example.themovieapp.data.models
 
+import com.example.themovieapp.data.vos.ActorVO
+import com.example.themovieapp.data.vos.GenreVO
 import com.example.themovieapp.data.vos.MovieVO
 import com.example.themovieapp.network.dataagents.MovieDataAgent
 import com.example.themovieapp.network.dataagents.RetrofitDataAgentImpl
@@ -24,5 +26,24 @@ object MovieModelImpl : MovieModel{
         onFailure: (String) -> Unit
     ) {
         mMovieDataAgent.getPopularMovies(onSuccess = onSuccess, onFailure = onFailure)
+    }
+
+    override fun getMovieGenreList(
+        onSuccess: (List<GenreVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mMovieDataAgent.getMovieGenreList(onSuccess = onSuccess,onFailure = onFailure)
+    }
+
+    override fun getMovieByGenre(
+        id: String,
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mMovieDataAgent.getMoviesByGenre(id = id , onSuccess = onSuccess,onFailure = onFailure)
+    }
+
+    override fun getPopularActors(onSuccess: (List<ActorVO>) -> Unit, onFailure: (String) -> Unit) {
+        mMovieDataAgent.getPopularActors(onSuccess = onSuccess,onFailure =onFailure)
     }
 }

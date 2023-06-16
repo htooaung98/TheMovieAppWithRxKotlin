@@ -13,7 +13,4 @@ class MovieListResponse (
 
     @SerializedName("results")
     val results : List<MovieVO>?
-
-
-
         )
