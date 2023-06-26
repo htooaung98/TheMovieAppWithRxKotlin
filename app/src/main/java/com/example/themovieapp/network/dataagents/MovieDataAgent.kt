@@ -35,4 +35,10 @@ interface MovieDataAgent {
         onSuccess: (List<ActorVO>) -> Unit,
         onFailure: (String) -> Unit
     )
+
+    fun getMovieDetail(
+        id:String,
+        onSuccess: (MovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

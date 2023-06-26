@@ -12,13 +12,17 @@ import kotlinx.android.synthetic.main.view_holder_movie.view.tvMovieName
 import kotlinx.android.synthetic.main.view_holder_movie.view.tvMovieRating
 
 class MovieViewHolder(itemView : View, mDelegate:MovieViewHolderDelegate) : RecyclerView.ViewHolder(itemView){
+    private var mMovie: MovieVO? = null
     init {
         itemView.setOnClickListener(){
-            mDelegate.onTapMovie()
+            mMovie.let {
+                mDelegate.onTapMovie(it?.Id?:0)
+            }
         }
     }
 
     fun bindData(movieVO: MovieVO){
+        mMovie = movieVO
         Glide.with(itemView.context)
             .load("$IMAGE_BASE_URL${movieVO.posterPath}")
             .into(itemView.ivMovieImage)

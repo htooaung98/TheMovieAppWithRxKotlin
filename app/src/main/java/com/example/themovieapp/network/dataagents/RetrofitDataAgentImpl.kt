@@ -175,4 +175,23 @@ object RetrofitDataAgentImpl: MovieDataAgent{
 
         })
     }
+
+    override fun getMovieDetail(id:String,onSuccess: (MovieVO) -> Unit, onFailure: (String) -> Unit) {
+        mTheMoviepi?.getMovieDetail(id=id)?.enqueue(object : Callback<MovieVO>{
+            override fun onResponse(call: Call<MovieVO>, response: Response<MovieVO>) {
+                if(response.isSuccessful){
+                    val movieVO = response.body() as MovieVO
+                    onSuccess (movieVO)
+                }
+                else{
+                    onFailure(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<MovieVO>, t: Throwable) {
+                onFailure(t.message.toString()?:"")
+            }
+
+        })
+    }
 }

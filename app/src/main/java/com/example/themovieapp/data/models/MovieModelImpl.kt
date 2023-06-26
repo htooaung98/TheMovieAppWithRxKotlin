@@ -46,4 +46,8 @@ object MovieModelImpl : MovieModel{
     override fun getPopularActors(onSuccess: (List<ActorVO>) -> Unit, onFailure: (String) -> Unit) {
         mMovieDataAgent.getPopularActors(onSuccess = onSuccess,onFailure =onFailure)
     }
+
+    override fun getMovieDetail(id:String,onSuccess: (MovieVO) -> Unit, onFailure: (String) -> Unit) {
+        mMovieDataAgent.getMovieDetail(id = id,onSuccess = onSuccess,onFailure=onFailure)
+    }
 }

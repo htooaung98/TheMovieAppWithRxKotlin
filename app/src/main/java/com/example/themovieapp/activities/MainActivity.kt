@@ -195,16 +195,16 @@ class MainActivity : AppCompatActivity() , BannerViewHolderDelegate ,ShowCaseVie
         return true;
     }
 
-    override fun onTapMovieFromBannerViewHolder() {
-        startActivity(MovieDetailActivity.newIntent(this))
+    override fun onTapMovieFromBannerViewHolder(movieId: Int) {
+        startActivity(MovieDetailActivity.newIntent(this,movieId = movieId))
     }
 
-    override fun onTapFromShowCaseViewHolder() {
-        startActivity(MovieDetailActivity.newIntent(this))
+    override fun onTapFromShowCaseViewHolder(movieId: Int) {
+        startActivity(MovieDetailActivity.newIntent(this,movieId = movieId))
     }
 
-    override fun onTapMovie() {
-        startActivity(MovieDetailActivity.newIntent(this))
+    override fun onTapMovie(movieId: Int) {
+        startActivity(MovieDetailActivity.newIntent(this,movieId = movieId))
     }
 
 

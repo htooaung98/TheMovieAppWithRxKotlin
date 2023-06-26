@@ -28,9 +28,14 @@ interface MovieModel {
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     )
-
     fun getPopularActors(
         onSuccess: (List<ActorVO>) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
+    fun getMovieDetail(
+        id:String,
+        onSuccess: (MovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 }

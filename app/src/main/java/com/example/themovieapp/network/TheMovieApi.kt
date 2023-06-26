@@ -1,5 +1,6 @@
 package com.example.themovieapp.network
 
+import com.example.themovieapp.data.vos.MovieVO
 import com.example.themovieapp.network.responses.ActorListResponse
 import com.example.themovieapp.network.responses.GenreListResponse
 import com.example.themovieapp.network.responses.MovieListByGenreResponse
@@ -7,6 +8,7 @@ import com.example.themovieapp.network.responses.MovieListResponse
 import com.example.themovieapp.utils.API_GET_ACTORS
 import com.example.themovieapp.utils.API_GET_GENRE_LIST
 import com.example.themovieapp.utils.API_GET_MOVIE_BY_GENRE
+import com.example.themovieapp.utils.API_GET_MOVIE_DETAIL
 import com.example.themovieapp.utils.API_GET_NOW_PLAYING
 import com.example.themovieapp.utils.API_GET_POPULAR
 import com.example.themovieapp.utils.API_GET_TOP_RATED
@@ -50,10 +52,15 @@ interface TheMovieApi {
         @Query(PARAM_API_KEY)apiKey : String = MOVIE_API_KEY
     ):Call<MovieListByGenreResponse>
 
-
     @GET(API_GET_ACTORS)
     fun getPopularActors(
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
         @Query("page")page:Int = 1
     ):Call<ActorListResponse>
+
+    @GET("$API_GET_MOVIE_DETAIL/{id}")
+    fun getMovieDetail(
+        @Path("id")id : String,
+        @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
+    ):Call<MovieVO>
 }

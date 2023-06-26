@@ -6,6 +6,7 @@ const val API_GET_TOP_RATED = "/3/movie/top_rated"
 const val API_GET_GENRE_LIST = "/3/genre/movie/list"
 const val API_GET_MOVIE_BY_GENRE = "/3/list"
 const val API_GET_ACTORS = "/3/person/popular"
+const val API_GET_MOVIE_DETAIL = "/3/movie"
 
 
 const val IMAGE_BASE_URL="https://image.tmdb.org/t/p/w400/"

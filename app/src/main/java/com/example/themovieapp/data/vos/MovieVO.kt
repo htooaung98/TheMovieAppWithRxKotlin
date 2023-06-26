@@ -14,6 +14,9 @@ data class MovieVO (
     @SerializedName("genre_ids")
     val genreIds:List<Int>?,
 
+    @SerializedName("genres")
+    val genres:List<GenreVO>?,
+
     @SerializedName("id")
     val Id:Int = 0,
 
@@ -31,6 +34,12 @@ data class MovieVO (
 
     @SerializedName("poster_path")
    val posterPath : String?,
+
+    @SerializedName("production_companies")
+    val production_companies:List<ProductionCompanyVO>?,
+
+    @SerializedName("production_countries")
+    val production_countries:List<ProductionCountryVO>?,
 
     @SerializedName("release_date")
     val releaseDate : String?,
