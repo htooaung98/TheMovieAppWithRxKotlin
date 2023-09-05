@@ -6,6 +6,7 @@ import com.example.themovieapp.data.vos.MovieVO
 import com.example.themovieapp.network.TheMovieApi
 import com.example.themovieapp.network.responses.ActorListResponse
 import com.example.themovieapp.network.responses.GenreListResponse
+import com.example.themovieapp.network.responses.MovieCreditsResponse
 import com.example.themovieapp.network.responses.MovieListByGenreResponse
 import com.example.themovieapp.network.responses.MovieListResponse
 import com.example.themovieapp.utils.BASE_URl
@@ -190,6 +191,34 @@ object RetrofitDataAgentImpl: MovieDataAgent{
 
             override fun onFailure(call: Call<MovieVO>, t: Throwable) {
                 onFailure(t.message.toString()?:"")
+            }
+
+        })
+    }
+
+    override fun getCreditByMovie(
+        id: String,
+        onSuccess: (Pair<List<ActorVO>, List<ActorVO>>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMoviepi?.getCreditByMovie(id = id)?.enqueue(object : Callback<MovieCreditsResponse>{
+            override fun onResponse(
+                call: Call<MovieCreditsResponse>,
+                response: Response<MovieCreditsResponse>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        onSuccess(Pair(it.cast?: listOf(),it.crew?: listOf()))
+                    }
+
+                }
+                else{
+                    onFailure(response.message()?:"")
+                }
+            }
+
+            override fun onFailure(call: Call<MovieCreditsResponse>, t: Throwable) {
+                onFailure(t.message?:"")
             }
 
         })

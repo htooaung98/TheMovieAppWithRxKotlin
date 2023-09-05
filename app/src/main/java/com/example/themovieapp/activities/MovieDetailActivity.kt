@@ -70,6 +70,17 @@ class MovieDetailActivity : AppCompatActivity() {
         onFailure = {
 
         })
+
+        mMovieModel.getCreditsByMovie(
+            id = "$movieId",
+            onSuccess = {
+                actorsViewPod.setNewData(it.first)
+                creatorViewPod.setNewData(it.second)
+            },
+            onFailure = {
+
+            }
+        )
     }
 
     private fun bindData(movie:MovieVO){
@@ -78,13 +89,17 @@ class MovieDetailActivity : AppCompatActivity() {
         tvNumberOfVotes.text = "${movie.voteCount}"
         tvRating.text = "${movie.voteAverage}"
         ratingBar.rating = movie.getRatingBasedOnFiveStars()
+        tvType.text = movie.getGenresAsCommaSeparatedString()
         tvOriginalTitle.text = movie.originalTitle
+        tvProduction.text = movie.getProductionCountriesAsCommaSeparatedString()
         tvPremiere.text = movie.releaseDate
         tvDescription.text = movie.overView
         Glide.with(this@MovieDetailActivity)
             .load("$IMAGE_BASE_URL${movie.posterPath}")
             .into(ivMovieImage)
         tvOverView.text = movie.overView
+
+
 
     }
 }

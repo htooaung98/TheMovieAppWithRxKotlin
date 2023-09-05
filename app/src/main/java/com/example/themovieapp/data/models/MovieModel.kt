@@ -38,4 +38,10 @@ interface MovieModel {
         onSuccess: (MovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
+
+    fun getCreditsByMovie(
+        id:String,
+        onSuccess: (Pair<List<ActorVO>,List<ActorVO>>) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

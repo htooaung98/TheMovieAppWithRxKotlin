@@ -3,6 +3,7 @@ package com.example.themovieapp.network
 import com.example.themovieapp.data.vos.MovieVO
 import com.example.themovieapp.network.responses.ActorListResponse
 import com.example.themovieapp.network.responses.GenreListResponse
+import com.example.themovieapp.network.responses.MovieCreditsResponse
 import com.example.themovieapp.network.responses.MovieListByGenreResponse
 import com.example.themovieapp.network.responses.MovieListResponse
 import com.example.themovieapp.utils.API_GET_ACTORS
@@ -63,4 +64,10 @@ interface TheMovieApi {
         @Path("id")id : String,
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
     ):Call<MovieVO>
+
+    @GET("$API_GET_MOVIE_DETAIL/{id}/credits")
+    fun getCreditByMovie(
+        @Path("id")id : String,
+        @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
+    ):Call<MovieCreditsResponse>
 }

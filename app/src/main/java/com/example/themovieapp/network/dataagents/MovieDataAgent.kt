@@ -41,4 +41,10 @@ interface MovieDataAgent {
         onSuccess: (MovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
+
+    fun getCreditByMovie(
+        id:String,
+        onSuccess: (Pair<List<ActorVO>,List<ActorVO>>) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }
