@@ -58,7 +58,7 @@ object MovieModelImpl : MovieModel{
         onFailure: (String) -> Unit
     ) {
         //Database
-        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = TOP_RATED)?: listOf())
+        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = "TOP_RATED")?: listOf())
         //Network
         mMovieDataAgent.getPopularMovies(onSuccess = {
             it.forEach{movie -> movie.type = TOP_RATED}
@@ -89,7 +89,20 @@ object MovieModelImpl : MovieModel{
     }
 
     override fun getMovieDetail(id:String,onSuccess: (MovieVO) -> Unit, onFailure: (String) -> Unit) {
-        mMovieDataAgent.getMovieDetail(id = id,onSuccess = onSuccess,onFailure=onFailure)
+        //Database
+        val movieFromDatabase: MovieVO? = mMovieDatabase?.movieDao()?.getMovieById(movieId = id.toInt())
+        movieFromDatabase?.let {
+            onSuccess(it)
+        }
+
+        mMovieDataAgent.getMovieDetail(id = id,onSuccess = {
+            val movieFromDatabase = mMovieDatabase?.movieDao()?.getMovieById(movieId = id.toInt())
+            it.type = movieFromDatabase?.type
+
+            mMovieDatabase?.movieDao()?.inertSingleMovie(it)
+
+            onSuccess(it)
+        },onFailure=onFailure)
     }
     override fun getCreditsByMovie(
         id: String,
