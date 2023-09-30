@@ -16,6 +16,7 @@ import com.example.themovieapp.utils.API_GET_TOP_RATED
 import com.example.themovieapp.utils.MOVIE_API_KEY
 import com.example.themovieapp.utils.PARAM_API_KEY
 import com.example.themovieapp.utils.PARAM_PAGE
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -27,47 +28,47 @@ interface TheMovieApi {
     fun getNowPlayingMovies(
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
         @Query(PARAM_PAGE) page:Int= 1,
-    ): Call<MovieListResponse>
+    ): Observable<MovieListResponse>
 
     @GET(API_GET_POPULAR)
     fun getPopularMovies(
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
         @Query(PARAM_PAGE) page:Int= 1,
-    ):Call<MovieListResponse>
+    ):Observable<MovieListResponse>
 
     @GET(API_GET_TOP_RATED)
     fun getTopRatedMovies(
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
         @Query(PARAM_PAGE) page:Int= 1,
-    ):Call<MovieListResponse>
+    ):Observable<MovieListResponse>
 
 
     @GET(API_GET_GENRE_LIST)
     fun getGenreList(
         @Query(PARAM_API_KEY)apiKey : String = MOVIE_API_KEY
-    ):Call<GenreListResponse>
+    ):Observable<GenreListResponse>
 
     @GET("$API_GET_MOVIE_BY_GENRE/{id}")
     fun getMoviesByGenre(
         @Path("id")id : String,
         @Query(PARAM_API_KEY)apiKey : String = MOVIE_API_KEY
-    ):Call<MovieListByGenreResponse>
+    ):Observable<MovieListByGenreResponse>
 
     @GET(API_GET_ACTORS)
     fun getPopularActors(
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
         @Query("page")page:Int = 1
-    ):Call<ActorListResponse>
+    ):Observable<ActorListResponse>
 
     @GET("$API_GET_MOVIE_DETAIL/{id}")
     fun getMovieDetail(
         @Path("id")id : String,
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
-    ):Call<MovieVO>
+    ):Observable<MovieVO>
 
     @GET("$API_GET_MOVIE_DETAIL/{id}/credits")
     fun getCreditByMovie(
         @Path("id")id : String,
         @Query(PARAM_API_KEY)apiKey: String = MOVIE_API_KEY,
-    ):Call<MovieCreditsResponse>
+    ):Observable<MovieCreditsResponse>
 }
